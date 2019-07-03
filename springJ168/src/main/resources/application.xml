@@ -22,7 +22,28 @@
                     http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd 
                     http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd" 
                     default-lazy-init="true">
-
-
+<!--一个bean代表一个类，ID是在容器里面的唯一标志。class 类的路径 -->
+  <bean id="teacher" class="com.lovo.spring.ioc.entity.TeacherEntity">
+  <!-- property 类的属性，可以是基本数据类型也可以是引用数据类型 name属性的名字,如果是基本数据类型值的key为value
+  ,如果是引用数据类型key为ref，值为对象的ID-->
+    <property name="teacherName" value="张老师" ></property>
+     <property name="teacherClass" value="JAVA" ></property>
+     <property name="listStu">
+       <list>
+         <ref bean="student"/>
+          <ref bean="student2"/>
+       </list>
+     </property>
+  </bean>
+  
+  <bean id="student" class="com.lovo.spring.ioc.entity.StudentEntity">
+   <constructor-arg value="赵云"></constructor-arg>
+   <constructor-arg ref="teacher"></constructor-arg>
+   <property name="teacher.teacherName" value="陈老师"></property>
+  </bean>
+    <bean id="student2" class="com.lovo.spring.ioc.entity.StudentEntity">
+   <constructor-arg value="赵云2"></constructor-arg>
+   <constructor-arg ref="teacher"></constructor-arg>
+  </bean>
     
 </beans>
