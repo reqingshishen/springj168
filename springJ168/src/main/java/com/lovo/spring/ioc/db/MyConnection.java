@@ -3,6 +3,7 @@ package com.lovo.spring.ioc.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class MyConnection {
 
@@ -11,13 +12,24 @@ public class MyConnection {
 	private String password;
 	private String userName;
 
+   private	Properties prop;
 	
 	public Connection getConnection() throws ClassNotFoundException, SQLException {
-		//加载驱动
-		Class.forName(driverClassName);
-		//返回数据库链接
-	  return	DriverManager.getConnection(url, userName, password);
+		System.out.println(driverClassName);
 		
+		//加载驱动
+		Class.forName(prop.getProperty("driverClassName"));
+		//返回数据库链接
+	  return	DriverManager.getConnection(prop.getProperty("url"),prop.getProperty("userName") , prop.getProperty("password") );
+		
+	}
+
+	public Properties getProp() {
+		return prop;
+	}
+
+	public void setProp(Properties prop) {
+		this.prop = prop;
 	}
 	
 	

@@ -22,23 +22,51 @@
                     http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd 
                     http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd" 
                     default-lazy-init="true">
+                    
+    <!-- 引入外部的properties文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties"  />
+    <!-- 扫描包,多个包用逗号隔开，支撑通配符 ，支撑子包扫描-->
+    <context:component-scan base-package="com.lovo.*.ioc.dao,com.lovo.*.ioc.service"></context:component-scan>
    <bean id="myConnection" class="com.lovo.spring.ioc.db.MyConnection">
-     <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+
+     <property name="driverClassName" value="${jdbc_driver}"></property>
+        <!-- 
      <property name="url">
        <value><![CDATA[jdbc:mysql://localhost:3306/j168?useUnicode=true&characterEncoding=UTF-8]]></value>
      </property>
      <property name="password" value="123456"></property>
      <property name="userName" value="root"></property>
+      -->
+      <property name="prop">
+        <props>
+          <prop key="driverClassName">${jdbc_driver}</prop>
+            <prop key="url">${jdbc_url}</prop>
+              <prop key="password">${jdbc_password}</prop>
+                <prop key="userName">${jdbc_user}</prop>
+        </props>
+      </property>
    </bean>
+   
+   
+   
+   
+   
+   
+   
+   
+    <!-- 
+    <bean id="studentDao" class="com.lovo.spring.ioc.dao.impl.StudentDaoImpl"> 
     
-    <bean id="studentDao" class="com.lovo.spring.ioc.dao.impl.StudentDaoImpl">
-      <!-- 告诉spring注入链接 -->
       <property name="myConnection" ref="myConnection"></property>
     </bean>
-    
+   
     <bean id="studentService" class="com.lovo.spring.ioc.service.impl.StudentServiceImpl">
-    <!-- 告诉spring注入Dao-->
+ 
      <property name="studentDao" ref="studentDao"></property>
     </bean>
-    
+   
+    <bean id="studentEntity" class="com.lovo.spring.ioc.entity.StudentEntity" 
+    scope="prototype" init-method="init" destroy-method="destory">
+    </bean>
+      -->
 </beans>

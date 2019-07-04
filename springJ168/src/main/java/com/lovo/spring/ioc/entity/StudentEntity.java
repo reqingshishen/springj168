@@ -26,4 +26,12 @@ public class StudentEntity {
 	}
 	
 	
+	
+	public void init() {
+		System.out.println("init...");
+	}
+	public void destory() {
+		System.out.println("destory...");
+	}
+
 }

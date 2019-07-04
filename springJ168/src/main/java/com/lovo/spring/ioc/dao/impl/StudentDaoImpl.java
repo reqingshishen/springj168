@@ -4,12 +4,18 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.lovo.spring.ioc.dao.IStudentDao;
 import com.lovo.spring.ioc.db.MyConnection;
 import com.lovo.spring.ioc.entity.StudentEntity;
-
+//持久层的注解
+@Repository(value="studentDao")
 public class StudentDaoImpl implements IStudentDao {
    //持有DB对象。等着spring注入
+	@Autowired
 	private MyConnection myConnection;
 	
 	public StudentEntity getStudent(String userName) throws ClassNotFoundException, SQLException {
@@ -27,13 +33,7 @@ public class StudentDaoImpl implements IStudentDao {
 	}
 
 	
-	public MyConnection getMyConnection() {
-		return myConnection;
-	}
 
-	public void setMyConnection(MyConnection myConnection) {
-		this.myConnection = myConnection;
-	}
 
 	
 	

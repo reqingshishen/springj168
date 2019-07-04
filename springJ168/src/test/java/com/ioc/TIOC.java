@@ -17,11 +17,13 @@ public class TIOC {
 	 @Before
   public void before() {
 	  app=new ClassPathXmlApplicationContext("application.xml");
+	  
   }
   @Test
   public void testStudent() {
 	  
 	IStudentService s= (IStudentService)app.getBean("studentService");
+     
 	try {
 	StudentEntity stu=	s.getStudent("zy11");
 	System.out.println(stu.getStudentName());
@@ -32,5 +34,16 @@ public class TIOC {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+  }
+  @Test
+  public void tscope() {
+	StudentEntity s=  (StudentEntity) app.getBean("studentEntity");
+	StudentEntity s1=  (StudentEntity) app.getBean("studentEntity");
+	StudentEntity s2=  (StudentEntity) app.getBean("studentEntity");
+	StudentEntity s3=  (StudentEntity) app.getBean("studentEntity");
+	System.out.println(s+"/"+s1+"/"+s2+"/"+s3);
+          app.destroy();
+         app.close();
+	
   }
 }
