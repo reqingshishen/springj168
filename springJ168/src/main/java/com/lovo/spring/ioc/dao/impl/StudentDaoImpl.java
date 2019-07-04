@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.lovo.spring.ioc.dao.IStudentDao;
 import com.lovo.spring.ioc.db.MyConnection;
 import com.lovo.spring.ioc.entity.StudentEntity;

@@ -1,5 +1,10 @@
 package com.lovo.spring.ioc.entity;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component(value="studentEntity")
+@Scope("prototype")
 public class StudentEntity {
   
 	private String studentName;
