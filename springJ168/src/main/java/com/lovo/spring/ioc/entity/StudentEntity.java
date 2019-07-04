@@ -5,7 +5,7 @@ public class StudentEntity {
 	private String studentName;
 	private TeacherEntity teacher;
 	
-	
+	public StudentEntity() {}
 	public StudentEntity(String studentName, TeacherEntity teacher) {
 		super();
 		this.studentName = studentName;
